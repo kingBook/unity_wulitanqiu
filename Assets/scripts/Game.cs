@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour {
+	[SerializeField]
+	private Emitter _emitter;
 
+	private bool _isMouseDown;
 	private void Start () {
 		
 	}
 	
 	private void Update () {
-		bool isMouseDown;
-		
-		if(Input.GetMouseButton(0)){
-			
+		if(Input.GetMouseButtonDown(0)){
+			onMouseDownHandler();
+		}else if(Input.GetMouseButtonUp(0)){
+			onMouseUpHandler();
 		}
+
+	}
+
+	private void onMouseDownHandler() {
+		_isMouseDown=true;
+	}
+
+	private void onMouseUpHandler() {
+		_isMouseDown=false;
 	}
 }
