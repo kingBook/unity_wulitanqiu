@@ -21,9 +21,23 @@ public class Line:MonoBehaviour {
 			Vector2 origin=_emitter.origin;
 			Vector2 mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			Vector2 dv=mousePos-origin;
-			float length=dv.magnitude;
+			transform.position=origin;
+
+			layoutCircles(_lineCirclelist,origin,mousePos);
 		}
+	}
+
+	private void layoutCircles(GameObject[]circles,Vector2 origin,Vector2 mousePos){
+		Vector2 dv=mousePos-origin;
+		float angle=Mathf.Atan2(dv.y,dv.x);
+		float distance=Mathf.Max(dv.magnitude,1);
+		float space=distance/circles.Length;
+		for(int i=0;i<circles.Length;i++){
+			float c=i*space;
+			Vector2 offset=new Vector2(Mathf.Cos(angle)*c,Mathf.Sin(angle)*c);
+			circles[i].transform.position=origin+offset;
+		}
+
 	}
 
 	private GameObject[] createLineCircles(int count){
