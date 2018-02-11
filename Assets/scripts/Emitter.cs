@@ -8,9 +8,18 @@ public class Emitter:MonoBehaviour {
 
 	private bool _isMouseDown;
 	private Vector2 _origin;
+	private float _angle;
+	private Vector2 _mousePos;
+	private List<GameObject> _playerCircleList;
 
 	private void Start() {
 		_origin=transform.position;
+
+		//初始创建一个球
+		GameObject playerCirCleGameObj=Instantiate();
+
+		_playerCircleList=new List<GameObject>();
+
 	}
 
 	private void Update() {
@@ -21,6 +30,10 @@ public class Emitter:MonoBehaviour {
 		}
 
 		if(_isMouseDown){
+			_mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector2 dv=_mousePos-_origin;
+			_angle=Mathf.Atan2(dv.y>0?-dv.y:dv.y,dv.x);
+			_angle=Mathf.Clamp(_angle,-170*Mathf.Deg2Rad,-20*Mathf.Deg2Rad);
 		}
 	}
 
@@ -33,7 +46,8 @@ public class Emitter:MonoBehaviour {
 	}
 
 	public bool isMouseDown{ get { return _isMouseDown; } }
-
-	public Vector2 origin{ get{return _origin;} }
+	public Vector2 origin{ get{return _origin; } }
+	public Vector2 mousePos { get { return _mousePos; } }
+	public float angle { get { return _angle; } }
 	
 }

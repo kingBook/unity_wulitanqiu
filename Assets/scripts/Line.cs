@@ -9,6 +9,7 @@ public class Line:MonoBehaviour {
 	private Emitter _emitter;
 	private Vector2 _target;
 	private GameObject[] _lineCirclelist;
+	private bool _lineCirclesActive;
 
 	private void Start() {
 		
@@ -16,28 +17,40 @@ public class Line:MonoBehaviour {
 
 	private void Update() {
 		if(_emitter.isMouseDown){
-			if(_lineCirclelist==null)_lineCirclelist=createLineCircles(5);
+			if(_lineCirclelist==null)_lineCirclelist=createLineCircles(6);
+			setCirclesActive(_lineCirclelist,true);
 
 			Vector2 origin=_emitter.origin;
-			Vector2 mousePos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
 			transform.position=origin;
 
-			layoutCircles(_lineCirclelist,origin,mousePos);
+			layoutCircles(_lineCirclelist,origin,_emitter.mousePos);
+		}else{
+			setCirclesActive(_lineCirclelist,false);
+		}
+	}
+
+	private void setCirclesActive(GameObject[] circles,bool active){
+		if(active==_lineCirclesActive)return;
+		_lineCirclesActive=active;
+		for(int i=0;i<circles.Length;i++){
+			circles[i].SetActive(active);
 		}
 	}
 
 	private void layoutCircles(GameObject[]circles,Vector2 origin,Vector2 mousePos){
+		float angle=_emitter.angle;
 		Vector2 dv=mousePos-origin;
-		float angle=Mathf.Atan2(dv.y,dv.x);
 		float distance=Mathf.Max(dv.magnitude,1);
 		float space=distance/circles.Length;
+		float scale=Mathf.Min(distance/1,1.5f);
 		for(int i=0;i<circles.Length;i++){
-			float c=i*space;
+			//set distance
+			float c=i*space+0.2f;
 			Vector2 offset=new Vector2(Mathf.Cos(angle)*c,Mathf.Sin(angle)*c);
 			circles[i].transform.position=origin+offset;
+			//set scale
+			circles[i].transform.localScale=new Vector2(scale,scale);
 		}
-
 	}
 
 	private GameObject[] createLineCircles(int count){
@@ -56,6 +69,6 @@ public class Line:MonoBehaviour {
 	}
 
 	private void OnDestroy() {
-
+		_lineCirclelist=null;
 	}
 }

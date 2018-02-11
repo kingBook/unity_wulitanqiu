@@ -118,6 +118,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4374103352833886, guid: a6c3760148f81e34f9b831feb4437837,
     type: 2}
   m_PrefabInternal: {fileID: 1476515438}
+--- !u!1 &215057156 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1456503611906530, guid: e3277eb7d957da64eb3ffa34396cf008,
+    type: 2}
+  m_PrefabInternal: {fileID: 1344056517}
 --- !u!1001 &291960829
 Prefab:
   m_ObjectHideFlags: 0
@@ -783,6 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _line: {fileID: 1954462715}
+  _playerCircleGameObj: {fileID: 215057156}
 --- !u!4 &1878713260 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4655526927241024, guid: 511a711604fc2554dbc87f6e706e3194,
