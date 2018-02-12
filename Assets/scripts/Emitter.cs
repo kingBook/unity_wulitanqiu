@@ -5,6 +5,8 @@ using UnityEngine;
 public class Emitter:MonoBehaviour {
 	[SerializeField]
 	private Line _line;
+	[SerializeField]
+	private GameContent _gameContent;
 
 	private bool _isMouseDown;
 	private Vector2 _origin;
@@ -14,12 +16,12 @@ public class Emitter:MonoBehaviour {
 
 	private void Start() {
 		_origin=transform.position;
-
+		
 		//初始创建一个球
-		GameObject playerCirCleGameObj=Instantiate();
-
+		GameObject playerCircle=_gameContent.createPlayerCircle(true,_origin);
+		
 		_playerCircleList=new List<GameObject>();
-
+		_playerCircleList.Add(playerCircle);
 	}
 
 	private void Update() {

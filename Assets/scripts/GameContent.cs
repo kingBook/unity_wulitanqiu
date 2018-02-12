@@ -10,7 +10,16 @@ public class GameContent : MonoBehaviour {
 		
 	}
 
-
-
+	public GameObject createPlayerCircle(bool active){
+		GameObject gameObj=Instantiate(_playerCircleGameObj,transform);
+		gameObj.SetActive(active);
+		return gameObj;
+	}
+	public GameObject createPlayerCircle(bool active,Vector3 position){
+		GameObject gameObj=Instantiate(_playerCircleGameObj,transform);
+		gameObj.SetActive(active);
+		gameObj.transform.position=position;
+		return gameObj;
+	}
 	
 }
