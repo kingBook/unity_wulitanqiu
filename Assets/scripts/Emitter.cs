@@ -45,6 +45,35 @@ public class Emitter:MonoBehaviour {
 
 	private void onMouseUpHandler() {
 		_isMouseDown=false;
+
+		emitCircle();
+	}
+
+	private void emitCircle(){
+		GameObject circle=getNearestCircle();
+		if(circle!=null) {
+			circle.transform.position = transform.position;
+			Invoke("emitCircle",0.5f);
+		}
+	}
+
+	private GameObject getNearestCircle(){
+		int nearestID=-1;
+		float minDistance=float.MaxValue;
+		for(int i=0;i<_playerCircleList.Count;i++){
+			float d=Vector2.Distance(_playerCircleList[i].transform.position,transform.position);
+			if(d<minDistance) nearestID=i;
+		}
+		if(nearestID>-1){
+			GameObject result=_playerCircleList[nearestID];
+			_playerCircleList.RemoveAt(nearestID);
+			return result;
+		}
+		return null;
+	}
+
+	private void OnDisable() {
+		CancelInvoke("emitCircle");
 	}
 
 	public bool isMouseDown{ get { return _isMouseDown; } }
