@@ -211,6 +211,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 511a711604fc2554dbc87f6e706e3194, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &529195432 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1508426168887746, guid: 511a711604fc2554dbc87f6e706e3194,
+    type: 2}
+  m_PrefabInternal: {fileID: 529195431}
 --- !u!4 &542169823 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4184068474321140, guid: ea28566f809b6dc4cbd2bfec25048852,
@@ -796,6 +801,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6c3760148f81e34f9b831feb4437837, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1476515439 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1335086757823138, guid: a6c3760148f81e34f9b831feb4437837,
+    type: 2}
+  m_PrefabInternal: {fileID: 1476515438}
 --- !u!1001 &1624339421
 Prefab:
   m_ObjectHideFlags: 0
@@ -842,6 +852,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cee6a31462c1c047bb45501ce685145, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1624339422 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1759963722794324, guid: 1cee6a31462c1c047bb45501ce685145,
+    type: 2}
+  m_PrefabInternal: {fileID: 1624339421}
 --- !u!1 &1706912718 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1887269613468178, guid: ea28566f809b6dc4cbd2bfec25048852,
@@ -973,3 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCircleGameObj: {fileID: 215057156}
+  _shapeList:
+  - {fileID: 529195432}
+  - {fileID: 1624339422}
+  - {fileID: 1476515439}

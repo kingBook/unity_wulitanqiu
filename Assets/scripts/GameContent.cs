@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameContent : MonoBehaviour {
 	[SerializeField]
-	private GameObject _playerCircleGameObj;	
+	private GameObject _playerCircleGameObj;
+	[SerializeField]
+	private GameObject[] _shapeList;
+	private List<GameObject> _runtimeShapeList;
 
 	private void Start() {
 		
@@ -21,5 +24,14 @@ public class GameContent : MonoBehaviour {
 		gameObj.transform.position=position;
 		return gameObj;
 	}
+
+	private void createShape(){
+		int ranID=Random.Range(0,_shapeList.Length);
+		GameObject shapePrefab=_shapeList[ranID];
+		GameObject gameObj=Instantiate(shapePrefab,transform);
+		gameObj.SetActive(true);
+		//gameObj.transform.position=
+	}
+	
 	
 }
