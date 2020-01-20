@@ -3,42 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Line:MonoBehaviour {
-	[SerializeField]
-	private GameObject _lineCircle;
-	[SerializeField]
-	private Emitter _emitter;
-	private Vector2 _target;
-	private GameObject[] _lineCirclelist;
-	private bool _lineCirclesActive;
+
+	[SerializeField]private GameObject m_lineCircle=null;
+	[SerializeField]private Emitter m_emitter=null;
+
+	private Vector2 m_target;
+	private GameObject[] m_lineCirclelist;
+	private bool m_lineCirclesActive;
 
 	private void Start() {
 		
 	}
 
 	private void Update() {
-		if(_emitter.isMouseDown){
-			if(_lineCirclelist==null)_lineCirclelist=createLineCircles(6);
-			setCirclesActive(_lineCirclelist,true);
+		if(m_emitter.isMouseDown){
+			if(m_lineCirclelist==null)m_lineCirclelist=CreateLineCircles(6);
+			SetCirclesActive(m_lineCirclelist,true);
 
-			Vector2 origin=_emitter.origin;
+			Vector2 origin=m_emitter.origin;
 			transform.position=origin;
 
-			layoutCircles(_lineCirclelist,origin,_emitter.mousePos);
+			LayoutCircles(m_lineCirclelist,origin,m_emitter.mousePos);
 		}else{
-			setCirclesActive(_lineCirclelist,false);
+			SetCirclesActive(m_lineCirclelist,false);
 		}
 	}
 
-	private void setCirclesActive(GameObject[] circles,bool active){
-		if(active==_lineCirclesActive)return;
-		_lineCirclesActive=active;
+	private void SetCirclesActive(GameObject[] circles,bool active){
+		if(active==m_lineCirclesActive)return;
+		m_lineCirclesActive=active;
 		for(int i=0;i<circles.Length;i++){
 			circles[i].SetActive(active);
 		}
 	}
 
-	private void layoutCircles(GameObject[]circles,Vector2 origin,Vector2 mousePos){
-		float angle=_emitter.angle;
+	private void LayoutCircles(GameObject[]circles,Vector2 origin,Vector2 mousePos){
+		float angle=m_emitter.angle;
 		Vector2 dv=mousePos-origin;
 		float distance=Mathf.Max(dv.magnitude,1);
 		float space=distance/circles.Length;
@@ -53,22 +53,22 @@ public class Line:MonoBehaviour {
 		}
 	}
 
-	private GameObject[] createLineCircles(int count){
+	private GameObject[] CreateLineCircles(int count){
 		GameObject[] list=new GameObject[count];
 		for(int i=0;i<count;i++){
-			GameObject lineCircle=Instantiate(_lineCircle,transform) as GameObject;
+			GameObject lineCircle=Instantiate(m_lineCircle,transform) as GameObject;
 			lineCircle.SetActive(true);
 			list[i]=lineCircle;
 		}
 		return list;
 	}
 
-	public void setPoints(Vector2 pt1,Vector2 pt2){
+	public void SetPoints(Vector2 pt1,Vector2 pt2){
 		transform.position=pt1;
-		_target=pt2;
+		m_target=pt2;
 	}
 
 	private void OnDestroy() {
-		_lineCirclelist=null;
+		m_lineCirclelist=null;
 	}
 }
