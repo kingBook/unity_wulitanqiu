@@ -15,8 +15,6 @@ public class Level:BaseMonoBehaviour{
 	protected override void Start(){
 		base.Start();
 		m_game=App.instance.GetGame<Game>();
-
-
 	}
 
 	public GameObject CreatePlayerCircle(bool active){
